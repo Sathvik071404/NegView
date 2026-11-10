@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#111511"/>
+  <path d="M0 510 1200 300v330H0Z" fill="#171e19"/>
+  <circle cx="1035" cy="110" r="250" fill="#dcff5d" opacity=".06"/>
+  <rect x="86" y="92" width="88" height="88" rx="24" fill="#1b241d" stroke="#dcff5d" stroke-width="3"/>
+  <path d="M107 117h46M107 136h30" stroke="#f0f3e9" stroke-linecap="round" stroke-width="6"/>
+  <circle cx="157" cy="159" r="18" fill="#dcff5d"/><path d="M150 159h14" stroke="#111511" stroke-width="5"/>
+  <text x="200" y="151" fill="#f0f3e9" font-family="Arial,sans-serif" font-size="42" font-weight="700" letter-spacing="8">NEG<tspan fill="#aeb5a9" font-weight="400">VIEW</tspan></text>
+  <text x="86" y="340" fill="#f0f3e9" font-family="Arial,sans-serif" font-size="78" font-weight="700" letter-spacing="-3">The other side</text>
+  <text x="86" y="430" fill="#dcff5d" font-family="Arial,sans-serif" font-size="78" font-weight="700" letter-spacing="-3">of the review.</text>
+  <text x="90" y="510" fill="#a4ada0" font-family="Arial,sans-serif" font-size="27">Browse Steam games · Read English negative reviews</text>
+  <text x="90" y="575" fill="#dcff5d" font-family="Consolas,monospace" font-size="18" letter-spacing="3">NEGVIEW.PAGES.DEV</text>
+</svg>

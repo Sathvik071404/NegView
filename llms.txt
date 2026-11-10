@@ -1,0 +1,20 @@
+# NegView
+
+> A noncommercial, desktop-first browser for English-language Steam reviews marked negative.
+
+NegView lets visitors browse popular Steam games, search the Steam catalog, and read written English reviews that Steam marks as not recommended. It links back to Steam for game and review context. No account is required.
+
+## Main pages
+
+- Home: https://negview.pages.dev/
+- Privacy: https://negview.pages.dev/privacy.html
+- Terms: https://negview.pages.dev/terms.html
+- Source code: https://github.com/Sathvik071404/NegView
+
+## Data and privacy
+
+Steam supplies game information, artwork, and reviews. NegView does not store review text, search history, visitor IDs, or counter cookies. Its footer counter stores one aggregate page-view total in Cloudflare D1; repeat visits count. See the privacy page for details.
+
+## Limits
+
+NegView is an independent class project and is not affiliated with Valve. Steam owns its game names, artwork, reviews, and trademarks. Search and review availability depend on Steam services.

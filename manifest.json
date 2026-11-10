@@ -1,0 +1,13 @@
+{
+  "name": "NegView — Steam Negative Review Browser",
+  "short_name": "NegView",
+  "description": "Browse Steam games and English-language reviews marked negative.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111511",
+  "theme_color": "#111511",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

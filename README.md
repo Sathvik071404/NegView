@@ -18,6 +18,7 @@ The live app runs on Cloudflare Pages so its `/api/*` routes can call Steam. The
 - Pick a random game that has at least one written English negative review.
 - Switch between dark and light themes; the selected theme is stored locally.
 - Use same-tab navigation, back-to-top, privacy and terms pages, and the custom 404 page.
+- Share pages with branded social previews, and install the site from a compatible browser using its web app manifest.
 
 ## Project map
 
@@ -65,6 +66,8 @@ The footer count is **page views, not unique viewers**: refreshes and repeat vis
 - `functions/api/visits.js`, `views.js`, `migrations/` — aggregate page-view counter.
 - `privacy.html`, `terms.html`, `404.html` — site information pages.
 - `docs/` — GitHub Pages showcase.
+- `robots.txt`, `sitemap.xml`, `llms.txt`, `.well-known/security.txt` — crawler guidance, public page discovery, site summary, and security contact.
+- `_headers`, `manifest.json`, `favicon.svg`, `apple-touch-icon.svg`, `og-image.svg` — Cloudflare response policy, install metadata, and site artwork.
 - `PLAN.md`, `NEXT_STEPS.md` — product scope and recommendations.
 - `wrangler.toml` — Cloudflare Pages and D1 settings.
 

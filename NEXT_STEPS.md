@@ -12,12 +12,14 @@
 - The updated Cloudflare app is live and its counter displays a total. The public GitHub Pages preview is deployed from `main/docs` and embeds the live app.
 - The GitHub source repository is public. The repository About description is “Noncommercial desktop-first Steam negative review browser.”
 - A Google Search Console HTML meta verification tag has been committed to `index.html`; ownership verification and sitemap submission are still pending confirmation in Search Console.
+- Added social preview metadata/art, WebSite structured data, icons and manifest, `llms.txt`, `.well-known/security.txt`, and Cloudflare security/cache headers. The CSP permits the GitHub Pages showcase to embed the live site.
 
 ## Do next
 
 1. **Check the local preview on a slower connection.** Open the site through Wrangler, confirm the home page makes no new request while scrolling, and confirm only the button adds the next 15 games. Check that posters stay aligned and that search still loads more results as you scroll.
 2. **Check a few more Steam cases.** Try a title with several editions, an empty result, and a Steam timeout or rate limit. Confirm app names and store links still refer to the same game.
 3. **Review Steam's current attribution and API terms before sharing more widely.** Search results use a public Steam Store route that is not a documented API and may change.
+4. **Verify the SEO and header setup after deployment.** Confirm `https://negview.pages.dev/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/.well-known/security.txt`, and response headers are served; test the GitHub Pages iframe and Steam posters with the CSP. Submit the sitemap in Search Console after property verification.
 
 ## Later improvements to consider
 
