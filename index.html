@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111310">
+  <meta name="description" content="Browse the reviews Steam marked negative. A tiny, noncommercial class project.">
+  <title>NegView — the other side of the review</title>
+  <link rel="stylesheet" href="style.css">
+  <script>try{if(localStorage.getItem("negview-theme")==="light")document.documentElement.dataset.theme="light"}catch{}</script>
+  <script src="theme.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar" id="site-header">
+    <a class="brand" href="./" aria-label="NegView home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><path class="brand-bubble" d="M10 8h26a5 5 0 0 1 5 5v14a5 5 0 0 1-5 5H23l-8 7v-7h-5a5 5 0 0 1-5-5V13a5 5 0 0 1 5-5Z"/><path d="M15 17h16M15 23h11"/><circle class="brand-badge" cx="36" cy="34" r="8"/><path class="brand-minus" d="M33 34h6"/></svg></span>
+      <span>NEG<span class="brand-light">VIEW</span></span>
+    </a>
+    <form id="header-search-form" class="header-search" role="search" autocomplete="off">
+      <label class="sr-only" for="header-search">Search Steam games</label>
+      <div class="header-search-field"><input id="header-search" name="q" type="search" placeholder="Search Steam games…" minlength="2" maxlength="80" required><div id="header-suggestions" class="search-suggestions" role="listbox" aria-label="Game suggestions" hidden></div></div>
+      <button type="submit">SEARCH <span>↗</span></button>
+    </form>
+    <div class="top-actions">
+      <button id="random-game" class="random-button" type="button">RANDOM GAME <span aria-hidden="true">⤨</span></button>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light mode">LIGHT MODE <span>◐</span></button>
+    </div>
+  </header>
+  <aside id="file-notice" class="file-notice" hidden>Steam search and reviews need the Pages server. Run <code>npx --yes wrangler pages dev .</code> in PowerShell, then open the URL Wrangler prints.</aside>
+  <p id="action-status" class="action-status" role="status" hidden></p>
+  <main id="app-main">
+    <section id="home-view" class="app-view" aria-label="Home">
+      <form id="home-search-form" class="home-search" role="search" autocomplete="off">
+        <label for="home-search">FIND A GAME ON STEAM</label>
+        <div class="home-search-line"><div class="home-search-field"><span aria-hidden="true">⌕</span><input id="home-search" name="q" type="search" placeholder="Search a game title…" minlength="2" maxlength="80" required><div id="home-suggestions" class="search-suggestions" role="listbox" aria-label="Game suggestions" hidden></div></div><button type="submit">SEARCH GAMES <span>↗</span></button></div>
+      </form>
+      <section class="featured" aria-labelledby="featured-title">
+        <div class="home-heading"><div><div class="eyebrow"><span>NEGATIVE REVIEWS</span><span class="rule"></span> THE FRONT PAGE</div><h1 id="featured-title">Popular on <em>Steam.</em></h1></div><span class="home-count">CURRENT POPULAR / STEAM</span></div>
+        <div class="game-grid" id="home-games" aria-live="polite"></div>
+        <div id="home-more" class="page-more"><p id="home-page-note" class="page-note">Loading Steam’s popular games…</p><button id="home-next" class="more-button" type="button" hidden>NEXT 15 GAMES <span>↓</span></button></div>
+      </section>
+    </section>
+
+    <section id="search-view" class="app-view search-view" hidden aria-labelledby="search-title">
+      <div class="view-heading"><div class="eyebrow"><span>STEAM STORE</span><span class="rule"></span> SEARCH RESULTS</div><h1 id="search-title">Find a game.</h1><p id="search-context" class="view-context"></p></div>
+      <div id="search-results" class="game-grid search-results-grid" aria-live="polite" aria-busy="false"></div>
+      <div id="search-more" class="page-more"><p id="search-page-note" class="page-note"></p><button id="search-next" class="more-button" type="button" hidden>LOAD MORE MATCHES <span>↓</span></button></div>
+    </section>
+
+    <section id="game-view" class="app-view game-view" hidden aria-labelledby="review-title">
+      <div class="game-overview">
+        <img id="game-poster" class="detail-poster" alt="" loading="eager">
+        <div class="game-overview-copy"><div class="eyebrow"><span>GAME FILE</span><span class="rule"></span> STEAM APP</div><h1 id="review-title"></h1><p>PLAYER REVIEWS / NOT RECOMMENDED</p><a id="store-link" class="steam-link" target="_blank" rel="noopener noreferrer">OPEN ON STEAM <span>↗</span></a></div>
+      </div>
+      <section id="reviews-section" class="review-section" aria-labelledby="review-heading">
+        <div class="review-header"><div><div class="eyebrow"><span>COMMENTS</span><span class="rule"></span> ENGLISH / NEGATIVE</div><h2 id="review-heading">The reviews.</h2></div><p id="review-context" class="review-context">Most helpful · All time</p></div>
+        <div id="review-list" class="review-list" aria-live="polite"></div>
+        <div id="more-wrap" class="more-wrap" hidden><button id="load-more" class="more-button" type="button">LOAD MORE <span>↓</span></button></div>
+      </section>
+    </section>
+
+    <footer id="about"><div class="footer-brand"><span class="footer-mark" aria-hidden="true">−</span>NEG<span>VIEW</span></div><p>A noncommercial class project. Review text and opinions belong to their authors and are provided by Steam.</p><nav class="footer-links" aria-label="Site information"><a href="privacy.html">PRIVACY</a><a href="terms.html">TERMS</a><a href="https://github.com/your-username/your-repository" target="_blank" rel="noopener noreferrer">CONTACT ↗</a></nav><a href="https://store.steampowered.com" target="_blank" rel="noopener noreferrer">POWERED BY STEAM <span>↗</span></a><small class="copyright">© 2026 NegView</small></footer>
+  </main>
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top" hidden><span aria-hidden="true">↑</span> BACK TO TOP</button>
+</body>
+</html>

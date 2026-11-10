@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111511">
+  <title>Privacy — NegView</title>
+  <link rel="stylesheet" href="style.css">
+  <script>try{if(localStorage.getItem("negview-theme")==="light")document.documentElement.dataset.theme="light"}catch{}</script>
+  <script src="theme.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./" aria-label="NegView home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" focusable="false"><path class="brand-bubble" d="M10 8h26a5 5 0 0 1 5 5v14a5 5 0 0 1-5 5H23l-8 7v-7h-5a5 5 0 0 1-5-5V13a5 5 0 0 1 5-5Z"/><path d="M15 17h16M15 23h11"/><circle class="brand-badge" cx="36" cy="34" r="8"/><path class="brand-minus" d="M33 34h6"/></svg></span><span>NEG<span class="brand-light">VIEW</span></span></a><nav class="top-actions"><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light mode">LIGHT MODE <span>◐</span></button><a class="about" href="index.html">HOME <span>↗</span></a></nav></header>
+  <main class="legal-page">
+    <div class="eyebrow"><span>INFO</span><span class="rule"></span> YOUR DATA</div>
+    <h1>Privacy <em>policy.</em></h1>
+    <p class="legal-updated">Last updated November 10, 2026</p>
+    <p>NegView is a small, noncommercial class project for browsing negative Steam reviews. This page explains what happens when you use it.</p>
+
+    <h2>What NegView stores</h2>
+    <p>NegView has no accounts, contact forms, advertising, analytics, or user-submitted content. It does not set cookies for tracking. The only preference saved by the site is your light or dark theme, stored in your browser’s local storage. You can clear it by clearing this site’s browser data.</p>
+
+    <h2>Searches and review requests</h2>
+    <p>When you search, the game title is sent to NegView’s Cloudflare Pages Function, which asks Steam’s Store search service for matching games. Random Game samples Steam’s Store catalog, skips non-game products, and checks for at least one written English negative review before showing a game. When you choose a game, its Steam app ID and page cursor are sent to the review function. Search, suggestions, and popular-game responses may be cached for five minutes, with stale results served for up to 15 additional minutes while the cache refreshes; review responses may be cached for up to ten minutes. NegView does not keep a search history or a review database.</p>
+    <p>Cloudflare operates the site and its serverless functions, and Steam provides the search, reviews, and artwork. These providers may process technical request information, such as IP address and browser or network details, to deliver and protect their services. Read the <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare Privacy Policy</a> and <a href="https://store.steampowered.com/privacy_agreement/" target="_blank" rel="noopener noreferrer">Steam Privacy Policy</a> for their practices.</p>
+
+    <h2>Steam links and artwork</h2>
+    <p>Game posters load from Steam’s image CDN. Opening a Steam link takes you to Steam, which handles that visit under its own policies. Reviews are written by Steam users; NegView displays their review text as text and does not collect or edit it.</p>
+
+    <h2>Contact</h2>
+    <p>The project contact link is a placeholder for now: <a href="https://github.com/your-username/your-repository" target="_blank" rel="noopener noreferrer">GitHub repository</a>.</p>
+  </main>
+  <footer><div class="footer-brand"><span class="footer-mark" aria-hidden="true">−</span>NEG<span>VIEW</span></div><p>Noncommercial class project · No accounts or tracking analytics</p><nav class="footer-links"><a href="privacy.html">PRIVACY</a><a href="terms.html">TERMS</a><a href="https://github.com/your-username/your-repository" target="_blank" rel="noopener noreferrer">CONTACT ↗</a></nav><a href="https://store.steampowered.com" target="_blank" rel="noopener noreferrer">POWERED BY STEAM <span>↗</span></a><small class="copyright">© 2026 NegView</small></footer>
+</body>
+</html>
