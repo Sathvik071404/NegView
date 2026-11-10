@@ -108,7 +108,7 @@ Do not persist Steam reviews in an application database. Cache responses briefly
 - Keep Steam’s default off-topic activity filtering enabled.
 - The API’s Helpful filter has a day-range behavior; select and document the appropriate range during implementation so the meaning of “most helpful” is clear.
 - Steam’s response provides an author SteamID, not a display name. Initial attribution can link to the author’s Steam profile. Verify the best supported URL for an individual review; otherwise link to the game’s Steam reviews page.
-- **Game search uses Steam’s public Store route:** The `search/results/?term=...` route supports Steam-style paging, but it is not documented in the official API docs and may change.
+- **Game search uses Steam’s public Store route:** `lib/steam.js` requests `search/results/` with `term`, `start`, and `count` for paged matches. This route is not documented in the official API docs and may change. Live suggestions use Steam’s `api/storesearch/` endpoint.
 - Steam can rate-limit unauthenticated review requests; handle HTTP 429 and show a retry path.
 
 ## State and caching
@@ -125,7 +125,7 @@ Do not persist Steam reviews in an application database. Cache responses briefly
 - Treat review text as untrusted content; render it as text, not executable HTML.
 - Validate app IDs, cursors, and search input at the API boundary.
 - Keep the server endpoint limited to the Steam operations the site needs; do not create a general-purpose proxy.
-- Review Steam API terms and attribution/branding requirements before public deployment.
+- Review Steam API terms and attribution/branding requirements for the existing public deployment.
 
 ## Quality bar
 
@@ -139,7 +139,7 @@ Do not persist Steam reviews in an application database. Cache responses briefly
 
 - Plain HTML/CSS/JavaScript is preferred for the smallest implementation; no stack was explicitly chosen.
 - Steam supplies the changing home-page order; NegView filters out games without written English negative reviews.
-- The site is intended for a public GitHub-linked deployment with light classmate traffic.
+- The source repository is public on GitHub, Cloudflare Pages hosts the live app, and GitHub Pages hosts the static preview. Traffic is expected to remain light and classmate-scale.
 - A small serverless function is acceptable; GitHub remains the source repository, while Cloudflare hosts the app.
 - “Small page at a time” means using Steam’s default 20 reviews per response unless implementation experience suggests another size.
 - Author attribution can initially use a profile link because Steam’s review response provides a SteamID rather than a display name.
@@ -147,8 +147,8 @@ Do not persist Steam reviews in an application database. Cache responses briefly
 ## Open risks and decisions
 
 1. **Game-name search:** the current Steam Store route is public and works for paging, but it is undocumented and may change.
-2. **Steam terms and branding:** confirm current Steam API Terms of Use and required Steam links/branding before publishing.
-3. **Review link format:** verify whether an individual review URL can be reliably constructed from returned IDs; otherwise link to the game’s Steam reviews page and author profile.
+2. **Steam terms and branding:** confirm current Steam API Terms of Use and required Steam links/branding for the public site.
+3. **Review link format:** the UI currently links to Steam’s per-author, per-game recommended-review route and the author profile. Confirm that Steam continues to resolve these links reliably.
 4. **Homepage threshold:** decide whether to require a minimum number of reviews before a game can be featured, to avoid tiny-sample titles dominating the lowest-percentage list.
 5. **Helpful ordering range:** Steam’s helpful sort uses a day range; select the intended range and communicate that sorting behavior accurately.
 6. **Free-tier drift:** hosting quotas and terms may change; recheck Cloudflare’s current limits before deployment.

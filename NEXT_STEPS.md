@@ -10,6 +10,8 @@
 - The footer counts every page load, including refreshes, as an aggregate total in Cloudflare D1 without cookies or visitor identifiers.
 - The D1 schema is applied in Cloudflare and local Wrangler; the local counter was checked for one-step increments and cross-origin rejection.
 - The updated Cloudflare app is live and its counter displays a total. The public GitHub Pages preview is deployed from `main/docs` and embeds the live app.
+- The GitHub source repository is public. The repository About description is “Noncommercial desktop-first Steam negative review browser.”
+- A Google Search Console HTML meta verification tag has been committed to `index.html`; ownership verification and sitemap submission are still pending confirmation in Search Console.
 
 ## Do next
 
