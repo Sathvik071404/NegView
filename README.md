@@ -8,7 +8,7 @@
 | **GitHub Pages preview** | [sathvik071404.github.io/NegView](https://sathvik071404.github.io/NegView/) |
 | **Source repository** | [Sathvik071404/NegView](https://github.com/Sathvik071404/NegView) |
 
-The live app runs on Cloudflare Pages so its `/api/*` routes can call Steam. The GitHub Pages site is a static showcase that embeds the live app; GitHub Pages alone cannot run Cloudflare Pages Functions.
+The live app runs on Cloudflare Pages so its `/api/*` routes can call Steam. The GitHub Pages site is a static showcase that embeds the live app; GitHub Pages alone cannot run Cloudflare Pages Functions. The GitHub Pages preview is public even though the source repository is private.
 
 ## What you can do
 

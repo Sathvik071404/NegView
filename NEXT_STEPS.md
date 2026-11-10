@@ -9,13 +9,13 @@
 - The logo now reads as a review chat bubble with a negative mark. Page changes and newly added cards use short, reduced-motion-aware animations.
 - The footer counts every page load, including refreshes, as an aggregate total in Cloudflare D1 without cookies or visitor identifiers.
 - The D1 schema is applied in Cloudflare and local Wrangler; the local counter was checked for one-step increments and cross-origin rejection.
+- The updated Cloudflare app is live and its counter displays a total. The public GitHub Pages preview is deployed from `main/docs` and embeds the live app.
 
 ## Do next
 
 1. **Check the local preview on a slower connection.** Open the site through Wrangler, confirm the home page makes no new request while scrolling, and confirm only the button adds the next 15 games. Check that posters stay aligned and that search still loads more results as you scroll.
-2. **Check a few Steam cases before publishing.** Try a common search, a title with several editions, an empty result, and a Steam timeout or rate limit. Confirm app names and store links still refer to the same game.
-3. **Deploy through Cloudflare Pages and verify the hosted counter.** Confirm the `VIEWS_DB` binding from `wrangler.toml` is active. The Steam routes also require Pages Functions, so a direct `file://` open cannot exercise search or reviews.
-4. **Review Steam's current attribution and API terms before sharing publicly.** Search results use a public Steam Store route that is not a documented API and may change.
+2. **Check a few more Steam cases.** Try a title with several editions, an empty result, and a Steam timeout or rate limit. Confirm app names and store links still refer to the same game.
+3. **Review Steam's current attribution and API terms before sharing more widely.** Search results use a public Steam Store route that is not a documented API and may change.
 
 ## Later improvements to consider
 
@@ -29,3 +29,4 @@
 - Steam's Store search route and art paths can change without notice.
 - Cache refresh can briefly show Steam lists or suggestions up to about 20 minutes old.
 - The first visit may take longer than a cached visit because eligibility is checked against Steam.
+- The page-view total counts reloads and automated requests, so treat it as an informal counter rather than a unique-viewer metric.
