@@ -28,17 +28,17 @@ The graph below was generated from the source with Graphify. It shows the main c
 
 ## Run locally
 
-NegView uses plain HTML, CSS, and JavaScript with Cloudflare Pages Functions. Opening `index.html` with `file://` only previews the static layout; search, reviews, random selection, and the visit counter need Wrangler.
+NegView uses plain HTML, CSS, and JavaScript with Cloudflare Pages Functions. Opening `public/index.html` with `file://` only previews the static layout; search, reviews, random selection, and the visit counter need Wrangler.
 
 ```powershell
-npx --yes wrangler pages dev .
+npx --yes wrangler pages dev public
 ```
 
 Open the local URL printed by Wrangler. The D1 binding and local migration are defined in `wrangler.toml` and `migrations/`.
 
 ## Deploy
 
-Cloudflare Pages is the application host. Connect this repository with production branch `main`, root directory `.`, no framework preset, and build output directory `.`. The `functions/api/` files map to `/api/*` routes.
+Cloudflare Pages is the application host. Connect this repository with production branch `main`, root directory `.`, no framework preset, and build output directory `public`. The `functions/api/` files map to `/api/*` routes.
 
 The GitHub Pages deployment uses the `docs/` folder on `main`. It provides a public preview wrapper that embeds the Cloudflare-hosted app and links to it directly.
 
@@ -61,15 +61,15 @@ The footer count is **page views, not unique viewers**: refreshes and repeat vis
 
 ## Main files
 
-- `index.html`, `style.css`, `app.js`, `theme.js` — interface and client-side navigation.
+- `public/index.html`, `public/style.css`, `public/app.js`, `public/theme.js` — interface and client-side navigation.
 - `functions/api/`, `lib/steam.js` — Steam proxy routes and shared game eligibility checks.
-- `functions/api/visits.js`, `views.js`, `migrations/` — aggregate page-view counter.
-- `privacy.html`, `terms.html`, `404.html` — site information pages.
+- `functions/api/visits.js`, `public/views.js`, `migrations/` — aggregate page-view counter.
+- `public/privacy.html`, `public/terms.html`, `public/404.html` — site information pages.
 - `docs/` — GitHub Pages showcase.
-- `robots.txt`, `sitemap.xml`, `llms.txt`, `.well-known/security.txt` — crawler guidance, public page discovery, site summary, and security contact.
-- `_headers`, `manifest.json`, `favicon.svg`, `apple-touch-icon.svg`, `og-image.svg` — Cloudflare response policy, install metadata, and site artwork.
+- `public/robots.txt`, `public/sitemap.xml`, `public/llms.txt`, `public/.well-known/security.txt` — crawler guidance, public page discovery, site summary, and security contact.
+- `public/_headers`, `public/manifest.json`, `public/favicon.svg`, `public/apple-touch-icon.svg`, `public/og-image.svg` — Cloudflare response policy, install metadata, and site artwork.
 - `PLAN.md`, `NEXT_STEPS.md` — product scope and recommendations.
-- `wrangler.toml` — Cloudflare Pages and D1 settings.
+- `wrangler.toml` — Cloudflare Pages output and D1 settings.
 
 ## License
 

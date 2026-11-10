@@ -13,6 +13,7 @@
 - The GitHub source repository is public. The repository About description is “Noncommercial desktop-first Steam negative review browser.”
 - A Google Search Console HTML meta verification tag has been committed to `index.html`; ownership verification and sitemap submission are still pending confirmation in Search Console.
 - Added social preview metadata/art, WebSite structured data, icons and manifest, `llms.txt`, `.well-known/security.txt`, and Cloudflare security/cache headers. The CSP permits the GitHub Pages showcase to embed the live site.
+- Cloudflare Pages now publishes only `public/`, separating website assets from root-level project Markdown and generated security reports.
 
 ## Do next
 

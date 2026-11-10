@@ -93,7 +93,7 @@ Do not persist Steam reviews in an application database. Cache responses briefly
 
 ## Architecture and hosting
 
-- **Frontend:** simplest suitable static HTML, CSS, and JavaScript site; no framework has been selected.
+- **Frontend:** static HTML, CSS, and JavaScript in the dedicated `public/` deployment directory; source notes and generated scan reports remain outside the published asset root.
 - **Hosting:** Cloudflare Pages connected to the GitHub repository, so pushes can deploy the site.
 - **Preview:** GitHub Pages serves a static showcase from `docs/` and embeds the live Cloudflare app; Functions remain on Cloudflare Pages.
 - **Backend:** Cloudflare Pages Functions for the small server-side Steam API proxy and short-lived cache. This keeps the frontend and backend in one deployment and avoids a separate cross-origin setup.
