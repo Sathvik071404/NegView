@@ -11,7 +11,7 @@ A fun, noncommercial college website for browsing negative Steam reviews. Visito
 - Make it easy to read and browse reviews, with links back to Steam.
 - Feature Steam’s current popular games in 15-game home pages.
 - Let visitors move between home, search results, and game reviews without losing their place.
-- Keep the project free or nearly free and avoid an application database.
+- Keep the project free or nearly free and store no visitor-level data.
 
 ## In scope
 
@@ -26,14 +26,14 @@ A fun, noncommercial college website for browsing negative Steam reviews. Visito
 - A “Load more” control for fetching additional review pages.
 - Steam’s existing off-topic filtering and removal of obvious duplicate review cards.
 - Clear states for no matches, no reviews, loading, Steam/API errors, and rate limits.
-- No login, user accounts, user submissions, or database.
+- No login, user accounts, user submissions, or stored Steam review data. A single aggregate page-view total is stored in Cloudflare D1; it has no visitor IDs or cookies.
 
 ## Out of scope for V1
 
 - Adult-content switch. Steam’s review response does not provide a per-review adult-content flag, so the switch is omitted rather than approximated with a text heuristic.
 - Visitor reports, user-generated content, or moderation queue.
 - Language, date, playtime, or other review filters.
-- Monetization, billing, and analytics.
+- Monetization, billing, visitor profiles, and behavioral analytics.
 - Automatically ranking every Steam game.
 
 ## Main user journeys
@@ -85,12 +85,19 @@ Use Steam’s response fields as needed for the UI:
 
 Do not persist Steam reviews in an application database. Cache responses briefly at the server edge. Steam says anonymous review API responses may be cached for up to 10 minutes.
 
+### Page-view counter
+
+- Count every page load, including refreshes and repeat visits; the total is not unique visitors.
+- Store only one aggregate integer in Cloudflare D1. Do not add cookies, browser IDs, IP addresses, or visit histories.
+- Cloudflare may process technical connection metadata under its own privacy practices; see the privacy page.
+
 ## Architecture and hosting
 
 - **Frontend:** simplest suitable static HTML, CSS, and JavaScript site; no framework has been selected.
 - **Hosting:** Cloudflare Pages connected to the GitHub repository, so pushes can deploy the site.
+- **Preview:** GitHub Pages serves a static showcase from `docs/` and embeds the live Cloudflare app; Functions remain on Cloudflare Pages.
 - **Backend:** Cloudflare Pages Functions for the small server-side Steam API proxy and short-lived cache. This keeps the frontend and backend in one deployment and avoids a separate cross-origin setup.
-- **Database:** none.
+- **Database:** one Cloudflare D1 row stores the aggregate page-view total. Steam reviews, searches, and visitor-level data are not persisted.
 - **Authentication:** none.
 - **Secrets:** the documented review endpoint can be called without a key. Do not expose any API key if a later integration requires one.
 - **Free-tier expectation:** suitable for a light-traffic class project; Cloudflare currently documents a 100,000/day free Workers request quota for Functions. Recheck limits at deployment.
@@ -113,7 +120,8 @@ Do not persist Steam reviews in an application database. Cache responses briefly
 
 ## Privacy, security, and abuse
 
-- No accounts or personal data are needed.
+- No accounts, visitor identifiers, or personal data are requested by NegView.
+- The aggregate counter can be inflated by automated or repeated requests; it is a lightweight page-view count, not a trusted analytics metric.
 - Treat review text as untrusted content; render it as text, not executable HTML.
 - Validate app IDs, cursors, and search input at the API boundary.
 - Keep the server endpoint limited to the Steam operations the site needs; do not create a general-purpose proxy.

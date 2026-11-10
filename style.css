@@ -157,8 +157,10 @@ main { width: min(100% - 64px, 1160px); margin: 0 auto; }
 .not-found-mark { position: absolute; right: 8%; top: 50%; width: 140px; height: 140px; display: grid; align-content: center; justify-items: center; border: 1px solid var(--line); color: var(--red); font: 10px/1.8 var(--mono); letter-spacing: .1em; text-align: center; transform: rotate(7deg) translateY(-50%); }
 .not-found-mark b { font: 22px var(--sans); }
 
-footer { padding: 28px 0 36px; display: flex; align-items: center; gap: 22px; border-top: 1px solid var(--line); color: var(--muted); }
+footer { padding: 28px 0 36px; display: flex; align-items: center; gap: 18px; border-top: 1px solid var(--line); color: var(--muted); }
 body>footer { padding-inline: max(calc((100vw - 1160px)/2), 32px); }
+.visit-count { flex: 0 0 auto; display: inline-flex; gap: 6px; color: var(--muted); font: 8px var(--mono); letter-spacing: .06em; white-space: nowrap; }
+.visit-count span { color: var(--green); font-weight: 700; }
 .footer-brand { flex: 0 0 auto; color: var(--ink); font: 700 11px var(--mono); letter-spacing: .06em; }
 .footer-brand span { color: var(--muted); font-weight: 400; }
 footer p { flex: 1; margin: 0; font-size: 11px; line-height: 1.5; }
@@ -200,7 +202,7 @@ footer>a { color: var(--muted); text-decoration: none; white-space: nowrap; }
   .section-head h2, .review-header h2 { font-size: 40px; }
   .game-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; margin-top: 20px; }
   .game-info { min-height: 88px; padding: 11px 12px 13px; }
-  .game-card h3 { margin-top: 7px; font-size: 15px; }
+  .game-card-title { margin-top: 7px; font-size: 15px; }
   .game-meta { font-size: 9px; }
   .game-card:after { right: 11px; bottom: 13px; }
   .result-list { grid-template-columns: 1fr; }

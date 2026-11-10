@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720" role="img" aria-labelledby="title desc">
+  <title id="title">NegView architecture map</title>
+  <desc id="desc">A code map based on Graphify extraction, showing the browser UI calling Cloudflare Pages Functions, Steam services, and a one-row aggregate visit counter in D1.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1"><stop stop-color="#131a15"/><stop offset="1" stop-color="#0d110e"/></linearGradient>
+    <linearGradient id="accent" x2="1"><stop stop-color="#dcff5d"/><stop offset="1" stop-color="#9fc63c"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#85927b"/></marker>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#eff3e8}.mono{font-family:Consolas,monospace;letter-spacing:.1em}.muted{fill:#a0aa9e}.lime{fill:#dcff5d}.small{font-size:12px}.label{font-size:11px;font-weight:700}.title{font-size:27px;font-weight:750;letter-spacing:-.04em}.node-title{font-size:17px;font-weight:700}.node-copy{font-size:13px}.panel{fill:#141b16;stroke:#334036;stroke-width:1.2}.node{fill:#1b241d;stroke:#465343;stroke-width:1}.node-accent{fill:#202a1b;stroke:#70843e;stroke-width:1.2}.edge{fill:none;stroke:#85927b;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1440" height="720" rx="28" fill="url(#background)"/>
+  <circle cx="1300" cy="82" r="170" fill="#dcff5d" opacity=".035"/>
+  <text x="64" y="72" class="label mono lime">NEGVIEW / SOURCE MAP</text>
+  <text x="64" y="116" class="title">Small frontend. Focused server routes.</text>
+  <text x="1376" y="74" text-anchor="end" class="small mono muted">GRAPHIFY · CODE-ONLY EXTRACTION</text>
+
+  <rect x="64" y="164" width="385" height="474" rx="18" class="panel"/>
+  <text x="92" y="205" class="label mono lime">01 / BROWSER UI</text>
+  <rect x="92" y="229" width="329" height="112" rx="13" class="node-accent"/>
+  <text x="116" y="265" class="node-title">app.js</text>
+  <text x="116" y="291" class="node-copy muted">Navigation · search · game cards</text>
+  <text x="116" y="313" class="node-copy muted">Review pages · Steam links</text>
+  <rect x="92" y="360" width="329" height="92" rx="13" class="node"/>
+  <text x="116" y="397" class="node-title">index.html + style.css</text>
+  <text x="116" y="425" class="node-copy muted">Desktop-first interface</text>
+  <rect x="92" y="471" width="329" height="111" rx="13" class="node"/>
+  <text x="116" y="508" class="node-title">theme.js + views.js</text>
+  <text x="116" y="536" class="node-copy muted">Local theme preference</text>
+  <text x="116" y="558" class="node-copy muted">Aggregate page-view display</text>
+
+  <rect x="527" y="164" width="412" height="474" rx="18" class="panel"/>
+  <text x="555" y="205" class="label mono lime">02 / CLOUDFLARE PAGES FUNCTIONS</text>
+  <rect x="555" y="229" width="356" height="169" rx="13" class="node"/>
+  <text x="579" y="265" class="node-title">Steam API routes</text>
+  <text x="579" y="296" class="node-copy muted">/api/popular-games · /api/search</text>
+  <text x="579" y="321" class="node-copy muted">/api/suggest · /api/reviews</text>
+  <text x="579" y="346" class="node-copy muted">/api/random-game</text>
+  <text x="579" y="376" class="small mono lime">FILTERED · ENGLISH · NEGATIVE</text>
+  <rect x="555" y="417" width="356" height="92" rx="13" class="node-accent"/>
+  <text x="579" y="454" class="node-title">lib/steam.js</text>
+  <text x="579" y="482" class="node-copy muted">Store search · review eligibility</text>
+  <rect x="555" y="528" width="356" height="82" rx="13" class="node"/>
+  <text x="579" y="561" class="node-title">/api/visits</text>
+  <text x="579" y="587" class="node-copy muted">POST only · same-origin check</text>
+
+  <rect x="1017" y="164" width="359" height="474" rx="18" class="panel"/>
+  <text x="1045" y="205" class="label mono lime">03 / EXTERNAL DATA</text>
+  <rect x="1045" y="229" width="303" height="132" rx="13" class="node"/>
+  <text x="1069" y="267" class="node-title">Steam Store</text>
+  <text x="1069" y="296" class="node-copy muted">Game catalog · search</text>
+  <text x="1069" y="320" class="node-copy muted">Names · posters</text>
+  <rect x="1045" y="380" width="303" height="132" rx="13" class="node"/>
+  <text x="1069" y="418" class="node-title">Steam Reviews API</text>
+  <text x="1069" y="447" class="node-copy muted">English review pages</text>
+  <text x="1069" y="471" class="node-copy muted">Steam marks negative</text>
+  <rect x="1045" y="531" width="303" height="79" rx="13" class="node-accent"/>
+  <text x="1069" y="564" class="node-title">Cloudflare D1</text>
+  <text x="1069" y="590" class="node-copy muted">site_views.total · one aggregate</text>
+
+  <path d="M449 310H517" class="edge"/>
+  <path d="M939 290H1035" class="edge"/>
+  <path d="M939 338C990 338 986 445 1035 445" class="edge"/>
+  <path d="M939 570H1035" class="edge"/>
+  <text x="483" y="293" text-anchor="middle" class="small mono muted">FETCH</text>
+  <text x="986" y="271" text-anchor="middle" class="small mono muted">CATALOG</text>
+  <text x="990" y="405" text-anchor="middle" class="small mono muted">REVIEWS</text>
+  <text x="986" y="553" text-anchor="middle" class="small mono muted">COUNT</text>
+
+  <text x="64" y="680" class="small muted">Graphify extracted the JavaScript code relationships; this view groups them by runtime boundary for readability.</text>
+</svg>

@@ -1,4 +1,5 @@
 .wrangler/
+graphify-out/
 node_modules/
 .dev.vars
 .dev.vars.*

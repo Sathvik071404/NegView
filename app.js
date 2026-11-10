@@ -231,9 +231,15 @@ function renderReviewCache(game, cache) {
 function reviewCard(review, appid) {
   const card = document.createElement("article"); card.className = "review-card"; card.dataset.id = review.recommendationid;
   const text = document.createElement("div"); text.className = "review-text"; renderReviewText(text, review.review || "(No written review.)");
-  const date = document.createElement("span"); date.textContent = new Date(review.timestamp_created * 1000).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-  const author = document.createElement("a"); author.textContent = "STEAM AUTHOR ↗"; author.href = `https://steamcommunity.com/profiles/${encodeURIComponent(review.author.steamid)}`; author.target = "_blank"; author.rel = "noopener noreferrer";
-  const steam = document.createElement("a"); steam.textContent = "VIEW REVIEW ↗"; steam.href = `https://steamcommunity.com/profiles/${encodeURIComponent(review.author.steamid)}/recommended/${appid}/`; steam.target = "_blank"; steam.rel = "noopener noreferrer";
+  const timestamp = Number(review.timestamp_created), date = document.createElement("span");
+  date.textContent = Number.isFinite(timestamp) && timestamp > 0 ? new Date(timestamp * 1000).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" }) : "DATE UNAVAILABLE";
+  const steamId = String(review.author?.steamid || ""), safeSteamId = /^\d{1,20}$/.test(steamId);
+  const author = document.createElement(safeSteamId ? "a" : "span"); author.textContent = "STEAM AUTHOR ↗";
+  const steam = document.createElement(safeSteamId ? "a" : "span"); steam.textContent = "VIEW REVIEW ↗";
+  if (safeSteamId) {
+    author.href = `https://steamcommunity.com/profiles/${steamId}`; author.target = "_blank"; author.rel = "noopener noreferrer";
+    steam.href = `https://steamcommunity.com/profiles/${steamId}/recommended/${appid}/`; steam.target = "_blank"; steam.rel = "noopener noreferrer";
+  }
   const meta = document.createElement("div"); meta.className = "review-meta"; meta.innerHTML = `<span class="negative-mark">● NOT RECOMMENDED</span>`; meta.append(date, author, steam); card.append(text, meta); return card;
 }
 
