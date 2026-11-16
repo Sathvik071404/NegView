@@ -59,7 +59,8 @@ async function fetchSuggestions(query, signal) {
 async function loadPopularPage(page, append) {
   if (homeLoading || (page > 0 && !homeHasMore && !homeQueue.length)) return;
   homeLoading = true; $("#home-next").disabled = true;
-  if (!append) { $("#home-games").replaceChildren(status("Loading Steam’s popular games…")); $("#home-next").hidden = true; homeQueue.length = 0; homeSeen.clear(); homeSteamPage = 0; homePage = 0; homeHasMore = true; }
+  $("#home-games").setAttribute("aria-busy", "true");
+  if (!append) { $("#home-page-note").textContent = "Loading Steam’s popular games…"; $("#home-next").hidden = true; homeQueue.length = 0; homeSeen.clear(); homeSteamPage = 0; homePage = 0; homeHasMore = true; }
   try {
     let attempts = 0;
     // shortcut: scan at most 100 Store candidates per visible page, raise after measuring Steam latency.
@@ -79,20 +80,19 @@ async function loadPopularPage(page, append) {
     $("#home-page-note").textContent = `${homeSeen.size} popular games · Page ${homePage}`;
     $("#home-next").textContent = "NEXT 15 GAMES"; $("#home-next").hidden = !homeQueue.length && !homeHasMore;
   } catch (error) {
-    if (!append) $("#home-games").replaceChildren();
     $("#home-page-note").textContent = error.message;
     $("#home-next").textContent = "RETRY"; $("#home-next").hidden = false;
-  } finally { homeLoading = false; $("#home-next").disabled = false; }
+  } finally { homeLoading = false; $("#home-games").setAttribute("aria-busy", "false"); $("#home-next").disabled = false; }
 }
 
 function gameCard(game, number) {
   const card = document.createElement("button"); card.className = "game-card"; card.type = "button";
   card.style.setProperty("--card-delay", `${((number - 1) % 15) * 22}ms`);
-  const image = document.createElement("img"); image.className = "game-art"; image.alt = `${game.name} poster`; image.loading = "lazy"; image.decoding = "async"; image.fetchPriority = "low";
+  const image = document.createElement("img"); image.className = "game-art"; image.alt = `${game.name} poster`; image.loading = number <= 5 ? "eager" : "lazy"; image.decoding = "async"; image.fetchPriority = number <= 5 ? "high" : "low";
   const info = document.createElement("span"); info.className = "game-info";
   const index = document.createElement("span"); index.className = "game-number"; index.textContent = `${String(number).padStart(2, "0")} / STEAM`;
   const title = document.createElement("span"); title.className = "game-card-title"; title.textContent = game.name;
-  info.append(index, title); card.append(image, info); setPoster(image, game);
+  info.append(index, title); card.append(image, info); image.onerror = () => image.remove(); image.src = game.poster || game.image;
   card.addEventListener("click", () => navigate({ view: "game", game }));
   return card;
 }
@@ -240,7 +240,7 @@ function reviewCard(review, appid) {
     author.href = `https://steamcommunity.com/profiles/${steamId}`; author.target = "_blank"; author.rel = "noopener noreferrer";
     steam.href = `https://steamcommunity.com/profiles/${steamId}/recommended/${appid}/`; steam.target = "_blank"; steam.rel = "noopener noreferrer";
   }
-  const meta = document.createElement("div"); meta.className = "review-meta"; meta.innerHTML = `<span class="negative-mark">● NOT RECOMMENDED</span>`; meta.append(date, author, steam); card.append(text, meta); return card;
+  const meta = document.createElement("div"), mark = document.createElement("span"); meta.className = "review-meta"; mark.className = "negative-mark"; mark.textContent = "● NOT RECOMMENDED"; meta.append(mark, date, author, steam); card.append(text, meta); return card;
 }
 
 function renderReviewText(container, source) {
@@ -293,7 +293,7 @@ if ("IntersectionObserver" in window) {
 $("#random-game").addEventListener("click", async (event) => {
   const button = event.currentTarget;
   if (button.disabled) return;
-  button.disabled = true; button.classList.add("is-randomizing"); button.innerHTML = `FINDING… <span aria-hidden="true">⤨</span>`;
+  button.disabled = true; button.classList.add("is-randomizing"); button.firstChild.textContent = "FINDING… ";
   $("#action-status").hidden = true;
   try {
     const response = await fetch("/api/random-game", { signal: AbortSignal.timeout(30000) }), game = await response.json();
@@ -303,7 +303,7 @@ $("#random-game").addEventListener("click", async (event) => {
     $("#action-status").textContent = error.name === "TimeoutError" ? "Steam is taking too long to find a game. Please try again." : error.message;
     $("#action-status").hidden = false;
   } finally {
-    button.disabled = false; button.classList.remove("is-randomizing"); button.innerHTML = `RANDOM GAME <span aria-hidden="true">⤨</span>`;
+    button.disabled = false; button.classList.remove("is-randomizing"); button.firstChild.textContent = "RANDOM GAME ";
   }
 });
 

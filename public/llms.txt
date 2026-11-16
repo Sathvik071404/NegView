@@ -6,10 +6,10 @@ NegView lets visitors browse popular Steam games, search the Steam catalog, and 
 
 ## Main pages
 
-- Home: https://negview.pages.dev/
-- Privacy: https://negview.pages.dev/privacy.html
-- Terms: https://negview.pages.dev/terms.html
-- Source code: https://github.com/Sathvik071404/NegView
+- [Home](https://negview.pages.dev/)
+- [Privacy](https://negview.pages.dev/privacy.html)
+- [Terms](https://negview.pages.dev/terms.html)
+- [Source code](https://github.com/Sathvik071404/NegView)
 
 ## Data and privacy
 

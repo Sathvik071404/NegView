@@ -9,7 +9,8 @@ function setTheme(theme, save = true) {
     const light = theme === "light";
     themeToggle.setAttribute("aria-pressed", String(light));
     themeToggle.setAttribute("aria-label", `Switch to ${light ? "dark" : "light"} mode`);
-    themeToggle.innerHTML = `${light ? "DARK" : "LIGHT"} MODE <span aria-hidden="true">${light ? "☾" : "◐"}</span>`;
+    themeToggle.firstChild.textContent = `${light ? "DARK" : "LIGHT"} MODE `;
+    themeToggle.lastElementChild.textContent = light ? "☾" : "◐";
   }
   if (save) try { localStorage.setItem("negview-theme", theme); } catch {}
 }

@@ -7,6 +7,7 @@
   <meta name="description" content="Explore Steam games, search the catalog, and read English-language reviews marked negative. Find the other side of every game’s story with NegView.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://negview.pages.dev/">
+  <link rel="preconnect" href="https://shared.akamai.steamstatic.com">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NegView">
   <meta property="og:title" content="NegView — Steam Negative Review Browser">
@@ -55,7 +56,11 @@
       </form>
       <section class="featured" aria-labelledby="featured-title">
         <div class="home-heading"><div><div class="eyebrow"><span>NEGATIVE REVIEWS</span><span class="rule"></span> THE FRONT PAGE</div><h1 id="featured-title">Popular on <em>Steam.</em></h1></div><span class="home-count">CURRENT POPULAR / STEAM</span></div>
-        <div class="game-grid" id="home-games" aria-live="polite"></div>
+        <div class="game-grid" id="home-games" aria-live="polite" aria-busy="true">
+          <div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div>
+          <div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div>
+          <div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div><div class="game-card-skeleton" aria-hidden="true"></div>
+        </div>
         <div id="home-more" class="page-more"><p id="home-page-note" class="page-note">Loading Steam’s popular games…</p><button id="home-next" class="more-button" type="button" hidden>NEXT 15 GAMES <span>↓</span></button></div>
       </section>
     </section>

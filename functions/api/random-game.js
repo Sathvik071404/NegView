@@ -40,7 +40,7 @@ export async function onRequestGet() {
       if (!reviews.ok) continue;
       const page = await reviews.json(), comments = (page.response || page).reviews || [];
       if (comments.some((review) => review.language === "english" && review.voted_up === false && review.review?.trim())) {
-        return Response.json({ id: appid, name: entry.data.name, image: item.logo, poster: entry.data.background_raw || entry.data.screenshots?.[0]?.path_full || entry.data.header_image }, { headers: { "Cache-Control": "no-store" } });
+        return Response.json({ id: appid, name: entry.data.name, image: item.logo, poster: entry.data.header_image || item.logo }, { headers: { "Cache-Control": "no-store" } });
       }
     }
     return Response.json({ error: "Couldn't find a game with an English negative review this time. Please try again." }, { status: 503 });
